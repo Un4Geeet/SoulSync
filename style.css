@@ -80,7 +80,10 @@ body{margin:0;font-family:Inter, Montserrat, system-ui, -apple-system, 'Segoe UI
 }
 @media (max-width:520px){
   .grid-3{grid-template-columns:1fr}
-  .lang-switch{display:none}
+  .lang-switch{
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .controls{gap:6px}
 }
 .logo-wrap {
