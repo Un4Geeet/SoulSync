@@ -1,0 +1,184 @@
+/* style.css - SoulSync website (light + dark theme) */
+:root{
+  --bg:#ffffff;
+  --surface:#f7fbff;
+  --text:#0f1724;
+  --muted:#6b7280;
+  --accent1:#ff6b8a;
+  --accent2:#6f5cff;
+  --accent3:#2ea3ff;
+  --card:#ffffff;
+  --glass: rgba(255,255,255,0.6);
+}
+[data-theme="dark"]{
+  --bg:#0b1220;
+  --surface:#07101a;
+  --text:#e6eefc;
+  --muted:#9aa6b2;
+  --card:#072029;
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto; background:linear-gradient(180deg,var(--bg),var(--surface)); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5}
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:64px;height:64px;object-fit:cover;border-radius:12px}
+.brand-title{margin:0;font-size:18px}
+.brand-sub{margin:0;font-size:13px;color:var(--muted)}
+
+.controls{display:flex;gap:10px;align-items:center}
+.lang-switch button{
+  background:linear-gradient;
+  border:1px solid rgba(#15243d);
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  color:#ffffff;
+  background-color: #15243d}
+.theme-toggle{background:linear-gradient(90deg,var(--accent2),var(--accent3));color:white;border:0;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:700}
+
+/* Hero */
+.hero{padding:40px 0}
+.two-col{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.hero-title{font-size:28px;margin:0}
+.lead{color:var(--muted);max-width:56ch}
+.actions{margin-top:18px;display:flex;gap:12px}
+.btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;text-decoration:none;display:inline-block}
+.primary{background:linear-gradient(90deg,var(--accent1),var(--accent3));color:white;font-weight:700}
+.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--text)}
+
+/* Card */
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+.contact-card h3{margin:0 0 8px}
+.muted{color:var(--muted)}
+
+/* Grid */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.person .avatar, .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent2),var(--accent3));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;margin:0 auto}
+.partners{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.partners .card{min-width:160px}
+
+/* Contact form */
+.contact-form input, .contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:10px;background:transparent;color:var(--text)}
+.form-actions{display:flex;gap:8px;justify-content:flex-end}
+
+/* Footer */
+.site-footer{padding:30px 0;border-top:1px solid rgba(0,0,0,0.04);margin-top:40px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(12px);transition:all 700ms cubic-bezier(.2,.9,.2,1);will-change:transform,opacity}
+.reveal.visible{opacity:1;transform:none}
+
+/* Responsive */
+@media (max-width:900px){
+  .two-col{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:520px){
+  .grid-3{grid-template-columns:1fr}
+  .lang-switch{display:none}
+  .controls{gap:6px}
+}
+.logo-wrap {
+  width: 100px;
+  height: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;              /* заокруглення */
+  padding: 8px;                     /* щоб лого не торкався країв */
+  box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+  transition: background 0.45s ease, transform 0.45s ease;
+  will-change: background, transform;
+}
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;               /* внутрішнє округлення */
+  display: block;
+  transform-origin: center;
+  /* початковий стан для анімації */
+  transform: scale(0.95);
+  opacity: 0.0;
+  transition: transform 0.6s cubic-bezier(.2,.9,.2,1), opacity 0.6s;
+}
+.logo.show {
+  transform: scale(1);
+  opacity: 1;
+}
+:root {
+  --logo-grad-light: linear-gradient(135deg,#ff6b8a 0%, #6f5cff 50%, #2ea3ff 100%);
+  --logo-grad-dark: linear-gradient(135deg,#4b0082 0%, #2ea3ff 100%);
+}
+body:not(.dark) .logo-wrap {
+  background: var(--logo-grad-light);
+}
+body.dark .logo-wrap {
+  background: var(--logo-grad-dark);
+}
+.logo-wrap:hover {
+  transform: scale(1.03);
+}
+.logo-wrap.animate {
+  animation: logo-pulse 700ms ease forwards;
+}
+@keyframes logo-pulse {
+  0% { transform: scale(0.94); filter: brightness(0.9); }
+  50% { transform: scale(1.06); filter: brightness(1.05); }
+  100% { transform: scale(1); filter: none; }
+}
+.logo-container {
+  position: relative;
+  z-index: 20;
+}
+
+.logo {
+  position: relative;
+  z-index: 10;
+}
+.logo-wrap {
+  position: relative;
+  z-index: 10;
+}
+header::before,
+header::after {
+  z-index: 1;
+}
+
+.logo, .logo-wrap {
+  z-index: 10;
+  position: relative;
+}
+.logo {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+.logo {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+/* світла тема за замовчуванням */
+.logo {
+  content: url("assets/img/logo-light.png");
+  transition: opacity 0.3s ease;
+}
+
+/* коли активна темна тема (body має клас .dark) */
+body.dark .logo {
+  content: url("assets/img/logo-dark.png");
+}
+body {
+  background-color: #fff;
+  color: #222;
+  transition: background 0.4s, color 0.4s;
+}
+
+body.dark {
+  background-color: #0b1220;
+  color: #f2f2f2;
+}
